@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TinyLink - URL Shortener</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">TinyLink</div>
+                <nav>
+                    <a href="/" class="active">Dashboard</a>
+                    <a href="/healthz" target="_blank">Health Check</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <h1>Create Short Link</h1>
+            <form id="createLinkForm">
+                <div class="form-group">
+                    <label for="originalUrl">Destination URL *</label>
+                    <input type="url" id="originalUrl" name="originalUrl" 
+                           placeholder="https://example.com/very-long-url" required>
+                </div>
+                <div class="form-group">
+                    <label for="customCode">Custom Code (optional)</label>
+                    <input type="text" id="customCode" name="customCode" 
+                           placeholder="my-custom-link" 
+                           pattern="[A-Za-z0-9_-]{1,50}" 
+                           title="Letters, numbers, hyphens, and underscores only (1-50 characters)">
+                </div>
+<button type="submit" class="btn btn-primary" style="
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    transform: translateY(0);
+"
+onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(16, 185, 129, 0.5)';"
+onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(16, 185, 129, 0.3)';"
+onmousedown="this.style.transform='translateY(0)';"
+onmouseup="this.style.transform='translateY(-2px)';"
+>
+    Create Short Link
+</button>           </form>
+        </div>
+
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h2 style="margin: 0;">Your Links</h2>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search links...">
+                </div>
+            </div>
+            
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <p>No links created yet. Create your first short link above!</p>
+            </div>
+            
+           <div id="linksTable">
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="background-color: hwb(325 2% 5%); color: white; padding: 12px 16px; text-align: left; font-weight: 600;">Short Link</th>
+                <th style="background-color: hwb(325 2% 5%); color: white; padding: 12px 16px; text-align: left; font-weight: 600;">Original URL</th>
+                <th style="background-color: hwb(325 2% 5%); color: white; padding: 12px 16px; text-align: left; font-weight: 600;">Clicks</th>
+                <th style="background-color: hwb(325 2% 5%); color: white; padding : 12px 16px; text-align: left; font-weight: 600;">Last Clicked</th>
+                <th style="background-color: hwb(325 2% 5%); color: white; padding: 12px 16px; text-align: left; font-weight: 600;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Links will be loaded here by JavaScript -->
+        </tbody>
+    </table>
+</div>
+        </div>
+    </main>
+
+    <footer style="text-align: center; padding: 2rem 0; color: #666; margin-top: 3rem;">
+        <div class="container">
+            <p>TinyLink - A simple URL shortener service</p>
+        </div>
+    </footer>
+
+    <script src="/script.js"></script>
+</body>
+</html>
